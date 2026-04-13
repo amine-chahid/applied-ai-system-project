@@ -312,3 +312,7 @@ A few sentences about what you learned:
 Below is a sample output from the recommender system:
 
 ![Recommender Output](tests/ScreenshotTEST.png)
+
+## Evaluation Results
+
+![All Profiles Output](tests/all_profiles.png)

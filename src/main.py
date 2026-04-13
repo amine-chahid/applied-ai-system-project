@@ -1,3 +1,4 @@
+from tabulate import tabulate
 from src.recommender import load_songs, recommend_songs
 
 
@@ -29,7 +30,7 @@ def main() -> None:
         "Edge Case (Conflicting)": {
             "favorite_genre": "lofi",
             "preferred_mood": "sad",
-            "energy_preference": 0.9,  # conflict
+            "energy_preference": 0.9,
             "valence_preference": 0.2,
             "danceability_preference": 0.4
         }
@@ -42,9 +43,21 @@ def main() -> None:
 
         recommendations = recommend_songs(user_prefs, songs, k=5)
 
+        table = []
+
         for song, score, explanation in recommendations:
-            print(f"{song['title']} - Score: {score:.2f}")
-            print(f"Because: {explanation}\n")
+            table.append([
+                song["title"],
+                song["artist"],
+                f"{score:.2f}",
+                explanation
+            ])
+
+        print(tabulate(
+            table,
+            headers=["Title", "Artist", "Score", "Reasons"],
+            tablefmt="grid"
+        ))
 
 
 if __name__ == "__main__":
