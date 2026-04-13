@@ -307,3 +307,8 @@ A few sentences about what you learned:
 - How did building this change how you think about real music recommenders
 - Where do you think human judgment still matters, even if the model seems "smart"
 
+## Example Output
+
+Below is a sample output from the recommender system:
+
+![Recommender Output](tests/ScreenshotTEST.png)
