@@ -1,4 +1,4 @@
-# 🎵 Music Recommender Simulation
+this is README.md # 🎵 Music Recommender Simulation
 
 ## Project Summary
 
@@ -11,26 +11,118 @@ Your goal is to:
 - Evaluate what your system gets right and wrong
 - Reflect on how this mirrors real world AI recommenders
 
-Replace this paragraph with your own summary of what your version does.
+This project implements a simple content-based music recommendation system. It analyzes song attributes such as genre, mood, energy, and tempo, and compares them to a user’s preferences. Each song is assigned a score based on how closely it matches the user’s taste profile. The system then ranks the songs and recommends the top matches. This simulation demonstrates how real-world recommendation systems transform data into personalized suggestions.
 
 ---
 
 ## How The System Works
 
-Explain your design in plain language.
+This system uses a content-based recommendation approach. Instead of relying on other users’ behavior, it focuses on matching song attributes with a user's preferences.
 
-Some prompts to answer:
+  ### Song Features
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
+Each `Song` in the system includes:
+- Genre
+- Mood
+- Energy
+- Tempo (BPM)
 
-You can include a simple diagram or bullet list if helpful.
+These features help represent the overall "vibe" of a song.
 
+  ### User Profile
+
+The `UserProfile` stores:
+- Favorite genre
+- Preferred mood
+- Energy preference
+
+This defines what kind of music the user likes.
+
+  ### Scoring Logic
+
+The recommender calculates a score for each song using a weighted approach:
+
+- Genre match → highest weight
+- Mood match → medium weight
+- Energy → scored based on how close it is to the user's preference
+
+Songs that are more similar to the user’s preferences receive higher scores.
+
+### Data Used
+
+The system uses a dataset of songs stored in `songs.csv`. Each song includes:
+
+- Genre (categorical)
+- Mood (categorical)
+- Energy (0.0–1.0)
+- Tempo (BPM)
+- Valence (happiness level)
+- Danceability (rhythm suitability)
+- Acousticness (acoustic vs electronic)
+
+The dataset was expanded to include a wider variety of genres such as lofi, rock, ambient, jazz, synthwave, and indie pop to improve diversity in recommendations.
+
+### User Profile
+
+The recommender uses a predefined user taste profile:
+
+- Favorite genre: lofi
+- Preferred mood: chill
+- Energy preference: 0.4
+- Valence preference: 0.6
+- Danceability preference: 0.6
+
+This profile represents a user who prefers calm, relaxed, and moderately upbeat music. These features allow the system to distinguish between very different styles such as intense rock and chill lofi.
+
+### Algorithm Recipe
+
+The recommender uses a weighted scoring system to evaluate each song:
+
+- +2.0 points if the song genre matches the user’s favorite genre
+- +1.5 points if the song mood matches the user’s preferred mood
+- Energy similarity score based on closeness to the user’s preference
+- Valence similarity score based on closeness
+- Danceability similarity score based on closeness
+
+For numerical features, the score is calculated as:
+
+    similarity = 1 - |song_value - user_preference|
+
+This ensures songs closer to the user’s preferences receive higher scores.
+
+After calculating scores for all songs, they are ranked from highest to lowest, and the top songs are recommended.
+
+### System Flow
+
+```mermaid
+flowchart TD
+    A[User Profile] --> B[Load Songs CSV]
+    B --> C[Loop Through Songs]
+    C --> D[Calculate Score]
+    D --> E[Store Score]
+    E --> F[Sort Songs]
+    F --> G[Top Recommendations]
+
+
+    
 ---
 
+## 🔹Expected Bias 
+
+### Potential Bias
+
+This system may over-prioritize genre, meaning it could ignore songs that match mood or energy but belong to a different genre.
+
+It may also create a "filter bubble" by repeatedly recommending similar types of music, reducing exposure to new genres.
+
+Additionally, numerical features like energy and valence may favor songs within a narrow range, limiting diversity in recommendations.
+
+
+After scoring all songs:
+- Songs are sorted from highest to lowest score
+- The top songs are selected as recommendations
+
+This process simulates how real recommendation systems rank and suggest content based on relevance.
 ## Getting Started
 
 ### Setup
@@ -144,14 +236,20 @@ Try to avoid code in this section, treat it like an explanation to a non program
 
 ## 4. Data
 
-Describe your dataset.
+### Data Used
 
-- How many songs are in `data/songs.csv`
-- Did you add or remove any songs
-- What kinds of genres or moods are represented
-- Whose taste does this data mostly reflect
+The system uses a dataset of songs stored in `songs.csv`. Each song includes:
 
----
+- Genre (categorical)
+- Mood (categorical)
+- Energy (0.0–1.0)
+- Tempo (BPM)
+- Valence (happiness level)
+- Danceability (rhythm suitability)
+- Acousticness (acoustic vs electronic)
+
+The dataset was expanded to include a wider variety of genres such as lofi, rock, ambient, jazz, synthwave, and indie pop to improve diversity in recommendations.
+
 
 ## 5. Strengths
 
