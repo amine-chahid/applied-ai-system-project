@@ -159,7 +159,8 @@ This experience showed me that AI is useful for acceleration, but human judgment
 
 ## 🎥 Demo Video
 
-👉 Add your Loom video link here
+👉 ## 🎥 Demo Video
+👉 https://www.loom.com/share/179e600116034bd09866f9fb5d7f28fd
 
 ---
 
