@@ -1,10 +1,13 @@
+from recommender import load_songs, recommend_songs
+from evaluator import evaluate_results
+from logger import log
 from tabulate import tabulate
-from src.recommender import load_songs, recommend_songs
-
 
 def main() -> None:
+    # Load songs from CSV
     songs = load_songs("data/songs.csv")
 
+    # Predefined user profiles
     profiles = {
         "High Energy Pop": {
             "favorite_genre": "pop",
@@ -36,6 +39,7 @@ def main() -> None:
         }
     }
 
+    # Loop through profiles
     for profile_name, user_prefs in profiles.items():
         print(f"\n==============================")
         print(f"Profile: {profile_name}")
@@ -53,11 +57,22 @@ def main() -> None:
                 explanation
             ])
 
+        # Display results
         print(tabulate(
             table,
             headers=["Title", "Artist", "Score", "Reasons"],
             tablefmt="grid"
         ))
+
+        # ✅ Evaluation (REQUIRED)
+        confidence = evaluate_results(recommendations)
+        print(f"\nSystem Confidence: {confidence}")
+
+        # ✅ Logging (REQUIRED)
+        log(f"Profile: {profile_name}")
+        log(f"User prefs: {user_prefs}")
+        log(f"Recommendations: {recommendations}")
+        log(f"Confidence: {confidence}")
 
 
 if __name__ == "__main__":

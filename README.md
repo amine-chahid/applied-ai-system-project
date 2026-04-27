@@ -161,3 +161,9 @@ This project demonstrates my ability to:
 - Integrate retrieval and reasoning components  
 - Evaluate system reliability  
 - Write clean, explainable code  
+
+-----
+
+## 📸 Example Output
+
+![Output](assets/output.png)

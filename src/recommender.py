@@ -110,16 +110,20 @@ def load_songs(csv_path: str) -> List[Dict]:
 # =========================
 # FUNCTIONAL RECOMMENDER
 # =========================
+from retriever import retrieve_songs_by_mood
 
-def recommend_songs(
-    user_prefs: Dict,
-    songs: List[Dict],
-    k: int = 5
-) -> List[Tuple[Dict, float, str]]:
+def recommend_songs(user_prefs, songs, k=5):
+
+    # 🔥 RAG STEP (retrieve first)
+    filtered_songs = retrieve_songs_by_mood(songs, user_prefs["preferred_mood"])
+
+    # fallback if no match
+    if not filtered_songs:
+        filtered_songs = songs
 
     results = []
 
-    for song in songs:
+    for song in filtered_songs:
         score = 0
         reasons = []
 
