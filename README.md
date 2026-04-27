@@ -145,6 +145,16 @@ This project showed me that AI systems are not just about generating outputs, bu
 
 By adding retrieval, evaluation, and logging, I built a system that behaves more like a real-world AI application.
 
+### AI Collaboration Reflection
+
+During development, I used AI tools to help generate code structure and debug issues.
+
+A helpful suggestion was using retrieval (RAG) to filter songs before scoring, which improved recommendation relevance.
+
+A flawed suggestion was initially overcomplicating the system with unnecessary components, which I simplified to keep the design clear and efficient.
+
+This experience showed me that AI is useful for acceleration, but human judgment is essential for making good design decisions.
+
 ---
 
 ## 🎥 Demo Video
